@@ -1,18 +1,53 @@
 #include <iostream>
+#include <time.h>
+using namespace std;
 
 
 
-bool busca(int * v, int n, int elemento){
+void executaCarga(int carga){
 
+    for(int i = 0; i < carga; i++);
+
+
+}
+
+
+
+void ordem_n(int n, int carga){
     for(int i = 0; i < n; i++){
+        executaCarga(carga);
 
-        if (v[i] == elemento){
-            return true;
-        }
 
-    return false;
 
     }
+
+
+}
+
+void ordem_n2(int n, int carga){
+    for(int i = 0; i < n; i++){
+        int j = n;
+        while (j > n){
+            executaCarga(carga);
+            n /= 2;
+        }
+
+
+
+        }
+
+
+    }
+
+
+void ordem_logN(int n, int carga){
+
+    while(n > 0){
+        n = n / 2;
+
+
+    }
+
 
 }
 
@@ -22,11 +57,17 @@ bool busca(int * v, int n, int elemento){
 
 int main(){
 
+    long int n = 10000000000;
+    int carga = 10;
     
-    int v[5] = {1,2,3,4,5};
+    clock_t inicio, fim;
 
-    bool resultado = busca(v, 5, 3);
+    inicio = clock();
 
+    ordem_n2(n, carga);
+    fim = clock();
 
+    double tempoTotal = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
+    printf("Tempo total de %f\n", tempoTotal);
 }
