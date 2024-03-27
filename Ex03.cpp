@@ -115,7 +115,7 @@ int* arrayMerge(int *v1, int n1, int *v2, int n2){
         if(v1[j] <= v2[k]){
             v3[i] = v1[j];
             j++;
-        }else if(v2[k] == v1[j]){
+        }else if(v2[k] >= v1[j]){
             v3[i] = v2[k];
             k++;
         }
