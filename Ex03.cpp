@@ -106,19 +106,22 @@ int* arrayMerge(int *v1, int n1, int *v2, int n2){
 
     int* v3 = (int*)calloc(n1+n2, sizeof(int));
 
-    int j = 0;
-    int k = 0;
-    int l = 0;
+    int* p1 = v1;
+    int* p2 = v2;
 
     for(int i = 0; i < (n1 + n2); i++){
-
-        if(v1[j] <= v2[k]){
-            v3[i] = v1[j];
-            j++;
-        }else if(v2[k] >= v1[j]){
-            v3[i] = v2[k];
-            k++;
+        if(*p1 <= *p2){
+            v3[i] = *p1;
+            p1++;
+        }else{
+            v3[i] = *p2;
+            p2++;
         }
+
+
+    }
+        for(int i = 0; i < (n1 + n2); i++){
+        printf("%d ", v3[i]);
 
 
 
@@ -149,9 +152,9 @@ int main(){
     // int* v3 = arrayConcat(v1, 3, v2, 4);
     // resultado { 2, 9, 6, 3, 7, 7, 9};
 
-    int v1[3] = { 2, 9, 6 };
+    int v1[3] = { 2, 6, 8};
     int v2[4] = { 3, 7, 7, 9 };
-    int* v3 = arrayConcat(v1, 3, v2, 4);
+    int* v3 = arrayMerge(v1, 3, v2, 4);
     // resultado { 2, 9, 6, 3, 7, 7, 9};
 
 }
