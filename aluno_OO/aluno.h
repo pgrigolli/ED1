@@ -2,42 +2,28 @@
 #include <string>
 using namespace std;
 
-typedef struct {
-    string ra;
-    string nome;
-} Aluno;
+class Aluno{
+    public:
+     string ra;
+     string nome;
 
-Aluno * aluno_criar(string ra, string nome);
-void aluno_inicializar(Aluno* a, string ra, string nome);
-void aluno_imprimir(Aluno* a);
-void aluno_destruir(Aluno* a);
+    Aluno(){
+        this->ra = "0";
+        this->nome = "undefined";
+    }
 
 
-Aluno * aluno_criar(string ra, string nome){
-    // Aluno* novo = (Aluno*) malloc(sizeof(Aluno));
+    Aluno(string ra, string nome){
+        this->nome = nome;
+        this->ra = ra;
+        cout << "Criando" << endl;
+    }
 
-    Aluno* novo = new Aluno();
-    aluno_inicializar(novo, ra, nome);
-    
-    return novo;
+    ~Aluno(){
+        cout << "Destruindo" << endl;
+    }
 
+    void imprimir(){
+        cout << this->nome << ", " << this->ra << endl;
+    }
 };
-
-void aluno_imprimir(Aluno* a){
-
-    cout << "(" << a->ra << ", " << a->nome << ")" << endl;
-
-}
-
-void aluno_destruir(Aluno* a){
-    delete a;
-}
-
-void aluno_inicializar(Aluno* a, string ra, string nome){
-    a->ra = ra;
-    a->nome = nome;
-
-
-
-
-}

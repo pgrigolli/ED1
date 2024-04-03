@@ -4,21 +4,32 @@
 
 using namespace std;
 
+void teste(){
+    Aluno a;
+    a.ra = "a113";
+    a.nome = "Dudu";
+}
+
+
+
 int main(){
-    Aluno *a1 = aluno_criar("a111", "Joao");
-    Aluno *a2 = aluno_criar("a112", "Pedro");
-    // Aluno *a3 = aluno_criar("a113", "Julia");
-    Aluno a3;
-    a3.nome = "Jose";
-    a3.ra = "a113";
+
+    // teste();
+    // cout << "Fim" << endl;
+
+    Aluno *a1 = new Aluno("a111", "Joao");
+    Aluno *a2 = new Aluno("a112", "Pedro");
+    a1->imprimir();
+    a2->imprimir();
 
 
 
-    aluno_imprimir(a1);
-    aluno_imprimir(a2);
-    aluno_imprimir(&a3);
-    
-    aluno_destruir(a1);
 
+    // Aluno* a1 = new Aluno();
+    // a1->ra = "a111";
+    // a1->nome = "Joao";
 
+    // cout << a1->ra << ", " << a1->nome << endl;
+
+    // delete a1;
 }
