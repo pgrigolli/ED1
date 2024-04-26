@@ -1,31 +1,32 @@
-#include "vetor.h"
+
+#include <string>
 #include <iostream>
-#include <string>
 
+using namespace std;
 
+class No{
+    public:
+        int dado;
+        No* prox;
 
-#include <string>
+        No();
+        No(int e);
+        No(int e, No* prox);
+};
 
-class Vetor{
+class ListaEncadeada{
 
     private:
-        int* array;
-        int capacity;
-        int size;
+        No* ultimo;
+        No* primeiro;
+        int tamanho;
 
     public:
-        Vetor();
-        ~Vetor();
+        ListaEncadeada();
+        ~ListaEncadeada();
 
         // Insere o elemento e na última posição
         bool push_back(int e);
-            
-
-
-
-
-
-
         // Insere o elemento e na primeira posição
         bool push_front(int e);
         // Insere o elemento e na posição pos
@@ -65,7 +66,15 @@ class Vetor{
         void gerenciaCapacidade();        
 };
 
+ListaEncadeada::ListaEncadeada(){}
+ListaEncadeada::~ListaEncadeada(){}
+    
+No::No(){}
 
+No::No(int e){
 
+}
 
+No::No(int e, No* prox){
 
+}

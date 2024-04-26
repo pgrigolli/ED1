@@ -1,3 +1,8 @@
+#include <string>
+#include <iostream>
+using namespace std;
+
+
 
 #include <string>
 
@@ -6,49 +11,202 @@ class Vetor{
     private:
         int* array;
         int capacity;
-        int size;
+        int tamanho;
 
     public:
-        Vetor();
+        Vetor(){
+            capacity = 1;
+            array = new int(capacity);
+            tamanho = 0;
+        }
         ~Vetor();
 
+
+
+
+        void push_back(int e){
         // Insere o elemento e na última posição
-        bool push_back(int e);
+            gerenciaCapacidade();
+            tamanho++;
+            array[tamanho - 1] = e;
+
+
+        }
+            
+
+
+
+
+
+
+        void push_front(int e){
         // Insere o elemento e na primeira posição
-        bool push_front(int e);
+        gerenciaCapacidade();
+        tamanho++;
+
+        for(int i = tamanho; i > 0; i--){
+            array[i] = array[i - 1];
+        }
+        array[0] = e;
+
+
+
+        }
+
+        void insert(int pos, int e){
         // Insere o elemento e na posição pos
-        bool insert(int pos, int e);
+        gerenciaCapacidade();
+        tamanho++;
 
+        for(int i = tamanho; i > pos; i--){
+            array[i] = array[i - 1];
+        }
+        array[e] = pos;
+
+
+        }
+
+
+
+        void pop_back(){
         // Remove o último elemento
-        int pop_back();
+            tamanho--;
+            gerenciaCapacidade();
+
+        }
+        void pop_front(){
         // Remove o primeiro elemento
-        int pop_front();
+        for(int i = 0; i < tamanho; i++){
+            array[i] = array[i + 1];
+
+        }
+
+        tamanho--;
+        gerenciaCapacidade();
+
+        }
+
+
+        int erase(int pos){
         // Remove o elemento da posição pos e retorna o elemento removido
-        int erase(int pos);
+        int erased = array[pos];
+        for(int i = pos; i < tamanho; i++){
+            array[i] = array[i + 1];
 
+        }
+        tamanho--;
+        gerenciaCapacidade();   
 
+        return erased;
+        }
+        int front(){
         // Retorna o primeiro elemento
-        int front();
+        return array[0];   
+        
+
+        }
+
+        int back(){
         // Retorna o último elemento
-        int back();
+            return array[tamanho - 1];
+        }
+
+
+
+
+        int at(int pos){
         // Retorna o elemento da posição pos
-        int at(int pos);
+            return array[pos];
 
+
+        }
+
+        void clear(){
         // Torna a lista vazia
-        void clear();
+            free(array);
+            int * newArray = new int(capacity);
+            array = newArray;
 
+
+        }
+
+
+        bool empty(){
         // Verifica se o vetor está vazio
-        bool empty();
+
+            if(tamanho == 0){
+                return 1;
+            }return 0;
+
+
+        }
+
+
+
+        int size(){
         // Devolve a quantidade de elementos
-        int size();
+        return this->tamanho;
+        }
+
+
+        void replace(int pos, int e){
         // Substitui o elemento da posição pos pelo elemento e
-        bool replace(int pos, int e);
 
+        array[pos] = e;
+
+        }
+
+        void print(){
         // Imprime todos os elementos no formato [1,2,3]
-        void print();
 
+        cout << "[";
+        for(int i = 0; i < tamanho; i++){
+            cout << array[i]; // 
+
+            cout << ", ";
+
+        }
+        if(tamanho == 0){
+            cout << "[]";
+        }
+        cout << "\b\b]" << endl;
+
+
+
+        }
     private:
+        void gerenciaCapacidade(){
+
 	    // Dobrar a capacidade quando não houver mais espaço
 	    // Reduzir a capacidade pela metade quando for inferior a 25% de ocupação
-        void gerenciaCapacidade();        
+
+            if(tamanho == capacity){
+
+                int* newArray = new int(capacity * 2);
+                for(int i = 0; i < tamanho; i++){
+                    newArray[i] = array[i];
+                }
+
+                capacity = capacity*2;
+                delete(array);
+                array = newArray;
+
+            }
+
+            else if(tamanho < (capacity * 0.25)){
+
+                int *newArray = new int(capacity/2);
+                for(int i = 0; i < tamanho; i++){
+                    newArray[i] = array[i];
+                }
+
+                capacity = capacity/2;
+                delete(array);
+                // array = newArray;
+            }
+
+
+        }        
+
+
 };
